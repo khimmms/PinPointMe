@@ -1,77 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/pages/rescuer_dashboard/rescuer_messages.dart';
 
-void main() {
-  runApp(MyApp());
-}
 
-class MyApp extends StatelessWidget {
+class InProgressPopup extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Pending Popup Dashboard',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: PendingPopup(),
-    );
-  }
+  State<InProgressPopup> createState() => _InProgressPopupState();
 }
 
-class PendingPopup extends StatefulWidget {
-  @override
-  State<PendingPopup> createState() => _PendingPopupState();
-}
-
-class _PendingPopupState extends State<PendingPopup> {
-  int _selectedBtmNav = 0;
+class _InProgressPopupState extends State<InProgressPopup> {
   final String roomNumber = 'RM 201'; // Make room number variable
-
-  List<BottomNavigationBarItem> _buildBottomNavBarItems() {
-    return [
-      BottomNavigationBarItem(
-        icon: _buildNavItemIcon(0, Icons.home),
-        label: '',
-      ),
-      BottomNavigationBarItem(
-        icon: _buildNavItemIcon(1, Icons.mail),
-        label: '',
-      ),
-      BottomNavigationBarItem(
-        icon: _buildNavItemIcon(2, Icons.person),
-        label: '',
-      ),
-    ];
-  }
-
-  Widget _buildNavItemIcon(int index, IconData iconData) {
-    if (_selectedBtmNav == index) {
-      return Container(
-        padding: EdgeInsets.symmetric(horizontal: 17.0, vertical: 2.0),
-        decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 186, 186, 223),
-          borderRadius: BorderRadius.circular(20.0),
-        ),
-        child: Icon(iconData),
-      );
-    } else {
-      return Icon(iconData);
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color(0xFFE0F7FA), // Light blue background
-              Colors.white,
-            ],
+          image: DecorationImage(
+            image: AssetImage('lib/assets/background.png'),
+            fit: BoxFit.fill,
           ),
         ),
+        
         child: Column(
           children: [
             SizedBox(height: 30),
@@ -80,28 +29,33 @@ class _PendingPopupState extends State<PendingPopup> {
               child: Row(
                 children: [
                   Image.asset(
-                    'lib/assets/ppm_logo.png',
-                    height: 50,
+                    'lib/assets/ppm_w_word.png',
+                    height: 70,
                   ),
-                  SizedBox(width: 8),
-                  Text(
-                    'PinPointMe',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                  SizedBox(width: 5),
                 ],
               ),
             ),
-            SizedBox(height: 20),
-            Divider(color: Colors.grey[300], thickness: 1),
+
             SizedBox(height: 10),
-            Text(
-              'Alerts and Notifications',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            Divider(color: Colors.grey[300], thickness: 1),
+            SizedBox(height: 70), // Reduced height
+
+            // Back button placed below the image
+            Padding(
+              padding: const EdgeInsets.only(left: 16.0, top: 8.0), // Adjust padding as needed
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: IconButton(
+                  icon: Icon(Icons.arrow_back, color: Colors.black87),
+                  onPressed: () {
+                    // Redirect to WaitingPage when back icon is clicked
+                    Navigator.pop(context);
+                  },
+                ),
+              ),
             ),
-            SizedBox(height: 20), // Reduced height
+
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Card(
@@ -161,21 +115,13 @@ class _PendingPopupState extends State<PendingPopup> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => RescuerMessage()));
+                            },
                             child: Text('Message'),
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.blue,
                               foregroundColor: Colors.white,
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                            ),
-                          ),
-                          SizedBox(width: 10),
-                          ElevatedButton(
-                            onPressed: () {},
-                            child: Text('Rescue'),
-                            style: ElevatedButton.styleFrom(
-                              foregroundColor: Colors.white,
-                              backgroundColor: Colors.yellow[700],
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                             ),
                           ),
@@ -185,21 +131,6 @@ class _PendingPopupState extends State<PendingPopup> {
                   ),
                 ),
               ),
-            ),
-            Spacer(),
-            BottomNavigationBar(
-              items: _buildBottomNavBarItems(),
-              currentIndex: _selectedBtmNav,
-              selectedItemColor: Colors.black,
-              unselectedItemColor: Colors.grey,
-              showSelectedLabels: true,
-              showUnselectedLabels: true,
-              backgroundColor: const Color.fromARGB(255, 230, 228, 239),
-              onTap: (btmIndex) {
-                setState(() {
-                  _selectedBtmNav = btmIndex;
-                });
-              },
             ),
           ],
         ),

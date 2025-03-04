@@ -1,24 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/pages/auth/rescuer_verified.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Rescuer Email Verification',
-      theme: ThemeData(
-        primarySwatch: Colors.green,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: RescuerVerification(),
-    );
-  }
-}
-
 class RescuerVerification extends StatefulWidget {
   @override
   _RescuerVerificationState createState() => _RescuerVerificationState();
