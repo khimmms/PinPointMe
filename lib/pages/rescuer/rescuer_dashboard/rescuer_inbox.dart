@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/pages/rescuer_dashboard/rescuer_messages.dart';
+import 'package:frontend/pages/rescuer/rescuer_dashboard/rescuer_messages.dart';
 
 class RescuerInbox extends StatefulWidget {
   @override

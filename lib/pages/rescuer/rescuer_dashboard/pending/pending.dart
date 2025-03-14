@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/pages/rescuer_dashboard/in_progress/in_progress.dart';
-import 'package:frontend/pages/rescuer_dashboard/rescued/rescued.dart';
-import 'package:frontend/pages/rescuer_dashboard/pending/pending_popup.dart';
-import 'package:frontend/pages/rescuer_dashboard/rescuer_profile.dart';
-import 'package:frontend/pages/rescuer_dashboard/rescuer_inbox.dart';
+import 'package:frontend/pages/rescuer/rescuer_dashboard/in_progress/in_progress.dart';
+import 'package:frontend/pages/rescuer/rescuer_dashboard/rescued/rescued.dart';
+import 'package:frontend/pages/rescuer/rescuer_dashboard/pending/pending_popup.dart';
+import 'package:frontend/pages/rescuer/rescuer_dashboard/rescuer_profile.dart';
+import 'package:frontend/pages/rescuer/rescuer_dashboard/rescuer_inbox.dart';
 
 
 class PendingDashboard extends StatefulWidget {

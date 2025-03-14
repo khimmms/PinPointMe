@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/pages/auth/rescuer_verified.dart';
+import 'package:frontend/pages/rescuer/auth/rescuer_verified.dart';
 
 class RescuerVerification extends StatefulWidget {
   @override

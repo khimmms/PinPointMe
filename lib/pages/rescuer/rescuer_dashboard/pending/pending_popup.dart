@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/pages/rescuer_dashboard/in_progress/in_progress.dart';
-import 'package:frontend/pages/rescuer_dashboard/rescuer_messages.dart';
+import 'package:frontend/pages/rescuer/rescuer_dashboard/in_progress/in_progress.dart';
+import 'package:frontend/pages/rescuer/rescuer_dashboard/rescuer_messages.dart';
 
 
 class PendingPopup extends StatefulWidget {

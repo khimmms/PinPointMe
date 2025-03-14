@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/pages/rescuer_dashboard/pending/pending.dart';
+import 'package:frontend/pages/rescuer/rescuer_dashboard/pending/pending.dart';
 
 class RescuerVerified extends StatefulWidget {
   @override

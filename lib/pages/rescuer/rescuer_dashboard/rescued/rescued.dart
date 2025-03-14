@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/pages/rescuer_dashboard/in_progress/in_progress_popup.dart';
-import 'package:frontend/pages/rescuer_dashboard/pending/pending.dart';
-import 'package:frontend/pages/rescuer_dashboard/rescued/rescued.dart';
-import 'package:frontend/pages/rescuer_dashboard/rescuer_inbox.dart';
-import 'package:frontend/pages/rescuer_dashboard/rescuer_profile.dart';
+import 'package:frontend/pages/rescuer/rescuer_dashboard/in_progress/in_progress.dart';
+import 'package:frontend/pages/rescuer/rescuer_dashboard/pending/pending.dart';
+import 'package:frontend/pages/rescuer/rescuer_dashboard/rescued/rescued_popup.dart';
+import 'package:frontend/pages/rescuer/rescuer_dashboard/rescuer_inbox.dart';
+import 'package:frontend/pages/rescuer/rescuer_dashboard/rescuer_profile.dart';
 
-class InProgressDashboard extends StatefulWidget {
+class RescuedDashboard extends StatefulWidget {
   @override
-  State<InProgressDashboard> createState() => _InProgressDashboardState();
+  State<RescuedDashboard> createState() => _RescuedDashboardState();
 }
 
-class _InProgressDashboardState extends State<InProgressDashboard> {
+class _RescuedDashboardState extends State<RescuedDashboard> {
   int _selectedBottomNavIndex = 0; 
-  int _selectedIndex = 0;
+  int _selectedIndex = 0; 
 
   @override
   void initState() {
@@ -43,7 +43,6 @@ class _InProgressDashboardState extends State<InProgressDashboard> {
     ]; 
   }
 
-  // Build the icon for each bottom navigation item
   Widget _buildNavItemIcon(int btmIndex, IconData iconData) {
     if (_selectedBottomNavIndex == btmIndex) {
       return Container(
@@ -52,11 +51,11 @@ class _InProgressDashboardState extends State<InProgressDashboard> {
           color: const Color.fromARGB(255, 186, 186, 223), 
           borderRadius: BorderRadius.circular(20.0), 
         ),
-        child: Icon(iconData), // The icon
+        child: Icon(iconData), 
       );
     } else {
-      return Icon(iconData); 
-    } 
+      return Icon(iconData);
+    }
   }
 
   @override
@@ -89,7 +88,7 @@ class _InProgressDashboardState extends State<InProgressDashboard> {
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage('lib/assets/ppm_w_word.png'), 
-              fit: BoxFit.fitWidth,
+              fit: BoxFit.fitWidth, 
             ),
           ),
         ),
@@ -122,32 +121,32 @@ class _InProgressDashboardState extends State<InProgressDashboard> {
                 foregroundColor: _selectedIndex == 1 ? Colors.white : Colors.black, 
                 backgroundColor: _selectedIndex == 1 ? Colors.cyan : Colors.grey[400], 
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)), 
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                setState(() => _selectedIndex = 2); 
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => InProgressDashboard())); 
+              },
+              child: Text('In progress'), 
+              style: ElevatedButton.styleFrom(
+                foregroundColor: _selectedIndex == 2 ? Colors.white : Colors.black, 
+                backgroundColor: _selectedIndex == 2 ? Colors.cyan : Colors.grey[400], 
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)), 
               ), 
             ),
             ElevatedButton(
               onPressed: () {
-                setState(() => _selectedIndex = 0); 
+                setState(() => _selectedIndex = 0);
               },
-              child: Text('In progress'), 
+              child: Text('Rescued'), 
               style: ElevatedButton.styleFrom(
                 foregroundColor: _selectedIndex == 0 ? Colors.white : Colors.black, 
                 backgroundColor: _selectedIndex == 0 ? Colors.cyan : Colors.grey[400], 
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)), 
               ),
             ),
-            ElevatedButton(
-              onPressed: () {
-                setState(() => _selectedIndex = 2);
-                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => RescuedDashboard())); 
-              },
-              child: Text('Rescued'), 
-              style: ElevatedButton.styleFrom(
-                foregroundColor: _selectedIndex == 2 ? Colors.white : Colors.black, 
-                backgroundColor: _selectedIndex == 2 ? Colors.cyan : Colors.grey[400], 
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)), 
-              ),
-            ),
-          ],
+          ], 
         ),
       ),
       Expanded(
@@ -158,25 +157,25 @@ class _InProgressDashboardState extends State<InProgressDashboard> {
               padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 6.0),
               child: Container(
                 decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 215, 159, 5),
+                  color: Color.fromARGB(255, 10, 140, 55),
                   borderRadius: BorderRadius.circular(8.0),
                 ),
                 child: ListTile(
                   title: InkWell(
-                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => InProgressPopup())),
+                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => RescuedPopup())),
                     child: Text(
                       'User Name',
                       style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18.0),
                     ),
                   ),
                   subtitle: Text('Scanned at GD1, 5th floor, RM 502 on ...', style: TextStyle(color: Colors.white)),
-                  trailing: Icon(Icons.share_location, color: Colors.white, size: 45.0),
+                  trailing: Icon(Icons.check_circle_outline_rounded, color: Colors.white, size: 45.0),
                 ),
               ),
             );
           },
         ),
-      ), 
+      ),
       BottomNavigationBar(
         items: _buildBottomNavBarItems(), 
         currentIndex: _selectedBottomNavIndex, 
@@ -208,7 +207,7 @@ class _InProgressDashboardState extends State<InProgressDashboard> {
                 setState(() {
                   _selectedBottomNavIndex = 0; // Home icon should be selected
                 });
-              }); 
+              });
               break;
           } //switch
         }, //onTap
